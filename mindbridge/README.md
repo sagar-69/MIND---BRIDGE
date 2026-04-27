@@ -70,6 +70,15 @@ What this screen does:
 - demonstrates usability of composer and thread scroll behavior
 - helps verify real runtime UX after launching the project
 
+### Wireframe Concepts
+
+The above screenshots represent the implemented UX from four wireframe patterns:
+
+- landing page with trust-focused hero and clear CTA
+- desktop chat shell with sidebar, mood check-in, and crisis support
+- empty-state onboarding prompts for first message
+- mobile bottom-drawer pattern for sessions and mood controls
+
 ---
 
 ## Why MindBridge
