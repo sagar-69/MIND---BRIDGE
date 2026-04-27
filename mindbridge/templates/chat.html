@@ -1,0 +1,137 @@
+{% extends "base.html" %}
+{% block title %}MindBridge · Chat{% endblock %}
+{% block body_class %}chat-body{% endblock %}
+
+{% block content %}
+  <header class="topbar">
+    <div class="topbar-left">
+      <button
+        id="sidebarToggle"
+        class="icon-btn"
+        type="button"
+        aria-label="Toggle sidebar"
+        title="Toggle sidebar"
+      >
+        <i data-lucide="menu"></i>
+      </button>
+      <a href="{{ url_for('index') }}" class="brand-link" aria-label="MindBridge home">
+        <span class="brand-gradient">MindBridge</span>
+      </a>
+    </div>
+    <div class="topbar-right">
+      <div id="offlinePill" class="status-pill hidden" aria-live="polite">Offline · start Ollama</div>
+      <button
+        id="themeToggle"
+        class="icon-btn"
+        type="button"
+        aria-label="Toggle dark mode"
+        title="Toggle theme"
+      >
+        <i data-lucide="moon"></i>
+      </button>
+    </div>
+  </header>
+
+  <div class="chat-shell" id="chatShell">
+    <aside class="sidebar" id="sidebar">
+      <div class="sidebar-section">
+        <div class="sidebar-title">Sessions</div>
+        <div id="sessionsList" class="sessions"></div>
+        <button id="newSessionBtn" class="btn subtle" type="button" aria-label="Create new session">
+          + New session
+        </button>
+      </div>
+
+      <div class="sidebar-section">
+        <div class="sidebar-title">Mood check-in</div>
+        <div class="mood-row">
+          <button class="mood" type="button" data-score="0" aria-label="Very good">😄</button>
+          <button class="mood" type="button" data-score="1" aria-label="Good">🙂</button>
+          <button class="mood" type="button" data-score="2" aria-label="Okay">😐</button>
+          <button class="mood" type="button" data-score="3" aria-label="Low">🙁</button>
+          <button class="mood" type="button" data-score="4" aria-label="Very low">😞</button>
+        </div>
+        <div class="mood-hint">Logged locally</div>
+      </div>
+
+      <div class="sidebar-bottom">
+        <button id="helplineBtn" class="btn danger pulse" type="button" aria-label="Open crisis helpline alert">
+          ⚠ Crisis helpline
+        </button>
+      </div>
+    </aside>
+
+    <div id="drawerOverlay" class="drawer-overlay hidden" aria-hidden="true"></div>
+    <aside id="mobileDrawer" class="mobile-drawer" aria-label="Sessions and mood drawer">
+      <div class="drawer-handle" aria-hidden="true"></div>
+      <div class="sidebar-section">
+        <div class="sidebar-title">Sessions & mood</div>
+        <div id="mobileSessionsList" class="sessions"></div>
+        <button id="mobileNewSessionBtn" class="btn subtle" type="button" aria-label="Create new session">
+          + New session
+        </button>
+      </div>
+      <div class="sidebar-section">
+        <div class="mood-row">
+          <button class="mood mood-mobile" type="button" data-score="0" aria-label="Very good">😄</button>
+          <button class="mood mood-mobile" type="button" data-score="1" aria-label="Good">🙂</button>
+          <button class="mood mood-mobile" type="button" data-score="2" aria-label="Okay">😐</button>
+          <button class="mood mood-mobile" type="button" data-score="3" aria-label="Low">🙁</button>
+          <button class="mood mood-mobile" type="button" data-score="4" aria-label="Very low">😞</button>
+        </div>
+      </div>
+      <button id="mobileHelplineBtn" class="btn danger pulse" type="button" aria-label="Open crisis helpline alert">
+        ⚠ Crisis helpline
+      </button>
+    </aside>
+
+    <section class="chat-main">
+      <div class="session-subheader">
+        <button id="sessionTitleBtn" class="session-title-btn" type="button" aria-label="Edit session title">
+          Session <span id="sessionShortId">-</span>
+          <i data-lucide="pencil" class="title-pencil"></i>
+        </button>
+        <input
+          id="sessionTitleInput"
+          class="session-title-input hidden"
+          type="text"
+          maxlength="80"
+          aria-label="Session title"
+        />
+      </div>
+
+      <div id="offlineBanner" class="banner banner-offline hidden">
+        Model offline. Start Ollama and reload.
+      </div>
+      <div id="crisisBanner" class="banner banner-crisis hidden">
+        <span>⚠ If you're in crisis, call 9152987821 (iCall)</span>
+        <a href="tel:9152987821" class="call-link" aria-label="Call crisis helpline now">Call now →</a>
+      </div>
+
+      <div id="thread" class="thread"></div>
+      <button id="scrollToBottomBtn" class="scroll-fab hidden" type="button" aria-label="Scroll to bottom">
+        <i data-lucide="arrow-down"></i>
+      </button>
+
+      <div class="composer">
+        <div id="typing" class="typing hidden">
+          <span></span><span></span><span></span>
+          <span class="typing-text">Thinking...</span>
+        </div>
+        <textarea
+          id="input"
+          rows="1"
+          placeholder="Type how you're feeling..."
+          aria-label="Message input"
+        ></textarea>
+        <button id="sendBtn" class="btn primary send-btn" type="button" aria-label="Send message">
+          <span class="send-label">Send</span>
+          <i data-lucide="send" class="send-icon"></i>
+        </button>
+      </div>
+    </section>
+  </div>
+
+  <div id="moodToast" class="mood-toast hidden" role="status" aria-live="polite">Mood logged ✓</div>
+{% endblock %}
+

@@ -1,0 +1,52 @@
+{% extends "base.html" %}
+{% block title %}MindBridge{% endblock %}
+{% block body_class %}landing-body{% endblock %}
+
+{% block content %}
+  <header class="topbar">
+    <a href="{{ url_for('index') }}" class="brand-link" aria-label="MindBridge home">
+      <span class="brand-gradient">MindBridge</span>
+    </a>
+    <div class="topbar-right">
+      <p class="disclaimer-pill">Not a substitute for professional care</p>
+      <button
+        id="themeToggle"
+        class="icon-btn"
+        type="button"
+        aria-label="Toggle dark mode"
+        title="Toggle theme"
+      >
+        <i data-lucide="moon"></i>
+      </button>
+    </div>
+  </header>
+
+  <section class="landing">
+    <article id="heroCard" class="hero-card">
+      <h1 class="hero-title">Your safe space to talk</h1>
+      <p class="hero-subtitle">Powered by Llama 3 · Private · Free · Runs locally</p>
+      <a class="btn primary cta-btn" href="{{ url_for('chat_page') }}" aria-label="Start a conversation">
+        <span>Start a conversation</span>
+        <i data-lucide="arrow-right" class="cta-arrow"></i>
+      </a>
+
+      <div class="landing-features">
+        <div class="feature-card">
+          <div class="feature-icon feature-blue" aria-hidden="true">💬</div>
+          <div class="feature-title">Conversational support</div>
+          <div class="feature-sub">Talk freely, no judgment</div>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon feature-green" aria-hidden="true">📚</div>
+          <div class="feature-title">Resource guidance</div>
+          <div class="feature-sub">CBT tools & coping tips</div>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon feature-purple" aria-hidden="true">🔒</div>
+          <div class="feature-title">100% local AI</div>
+          <div class="feature-sub">Runs via Ollama</div>
+        </div>
+      </div>
+    </article>
+  </section>
+{% endblock %}

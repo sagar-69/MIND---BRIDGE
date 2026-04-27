@@ -1,0 +1,8 @@
+flask>=3.0
+flask-cors>=4.0
+python-dotenv>=1.0
+langgraph>=0.1
+langchain-community>=0.0.30
+ollama>=0.1.8
+pymongo>=4.6
+
